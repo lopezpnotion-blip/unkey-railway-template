@@ -33,3 +33,10 @@ Create your first API and key:
 ```bash
 chmod +x scripts/bootstrap.sh
 ./scripts/bootstrap.sh
+## Bootstrap (optional)
+
+Create your first API and key:
+
+```bash
+chmod +x scripts/bootstrap.sh
+./scripts/bootstrap.sh
