@@ -1,0 +1,31 @@
+[template]
+name = "unkey-api-management-pro"
+description = "Production-ready Unkey.dev API key management with MySQL, Redis, auto-migrations, and seed data."
+tags = ["api", "unkey", "auth", "keys", "saas"]
+
+[services.unkey]
+source = "https://github.com/unkeyed/unkey"
+startCommand = "sh -c 'pnpm install && pnpm db:migrate && pnpm db:seed && pnpm start'"
+
+[services.unkey.variables]
+UNKEY_ROOT_KEY = "${{UNKEY_ROOT_KEY}}"
+DATABASE_URL = "mysql://root:${{MYSQL_PASSWORD}}@mysql:3306/unkey"
+REDIS_URL = "redis://redis:6379"
+
+[services.unkey.healthcheck]
+path = "/v1/health"
+interval = 10
+
+[services.mysql]
+image = "mysql:8.0"
+
+[services.mysql.variables]
+MYSQL_ROOT_PASSWORD = "${{MYSQL_PASSWORD}}"
+MYSQL_DATABASE = "unkey"
+
+[services.redis]
+image = "redis:7"
+
+[variables]
+UNKEY_ROOT_KEY = { description = "Root key for Unkey admin access", required = true }
+MYSQL_PASSWORD = { description = "MySQL root password", default = "password" }
