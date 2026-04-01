@@ -26,10 +26,10 @@ No configuration needed.
 | UNKEY_DATABASE_PRIMARY | Internal DB connection |
 | UNKEY_REDIS_URL | Internal Redis connection |
 
-## After Deploy
+## Bootstrap (optional)
 
-- Open the `unkey` service in Railway
-- Use the generated domain to access the API
-- Start creating API keys immediately
+Create your first API and key:
 
-## Health Check
+```bash
+chmod +x scripts/bootstrap.sh
+./scripts/bootstrap.sh
